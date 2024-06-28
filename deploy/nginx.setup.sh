@@ -19,10 +19,14 @@ if [ ! -d "$WEB_ROOT" ]; then
     sudo mkdir -p $WEB_ROOT || { echo "Failed to create web root directory"; exit 1; }
 fi
 
-if [ ! -d "$WEB_ROOT/.git" ]; then
-    sudo -u $USER git clone $REPO_URL $WEB_ROOT || { echo "Failed to clone repository"; exit 1; }
+if [ -d "$WEB_ROOT/.git" ]; then
+    # Navigate to the repository directory and pull changes
+    cd $WEB_ROOT || { echo "Failed to navigate to web root directory"; exit 1; }
+    sudo -u $USER git reset --hard HEAD || { echo "Failed to reset local changes"; exit 1; }
+    sudo -u $USER git pull origin main || { echo "Failed to pull latest changes"; exit 1; }
 else
-    echo "Repository already cloned in $WEB_ROOT"
+    # Clone the repository into the web root directory
+    sudo -u $USER git clone $REPO_URL $WEB_ROOT || { echo "Failed to clone repository"; exit 1; }
 fi
 
 sudo chown -R $USER:$USER $WEB_ROOT || { echo "Failed to change ownership"; exit 1; }
