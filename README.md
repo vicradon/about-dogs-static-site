@@ -5,6 +5,6 @@
 | **Cloud Platform**    | Azure                                                                            |
 | **Cloud Service**     | Azure Virtual Machine                                                            |
 | **Deployed URL**      | [https://userinfosite.azurewebsites.net](https://userinfosite.azurewebsites.net) |
-| **Static IP Address** |                                                                                  |
+| **Static IP Address** | 4.246.136.160                                                                    |
 | **Web Server**        | Nginx                                                                            |
 | **Egress Port**       | 80                                                                               |
